@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Jira Github Chrome Extension",
-  "description": "This extension enhances interaction between Github and Jira on Chrome",
+  "name": "Jira PR tag parser",
+  "description": "Turns Jira tags in PR titles into links",
   "version": "3.0",
 
   "browser_action": {
@@ -19,8 +19,7 @@
   "permissions": [
    "activeTab",
    "storage",
-   "https://www.github.com/BLC/*",
-   "https://github.com/BLC/*",
-   "https://github.com/joshuaheng/pivotal-github-chrome/*"
+   "https://www.github.com/buildoutinc/*",
+   "https://github.com/buildoutinc/*"
   ]
 }
