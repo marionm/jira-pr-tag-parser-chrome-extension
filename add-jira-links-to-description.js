@@ -1,17 +1,39 @@
 (() => {
-  const $input = document.querySelector('#pull_request_body');
-  if (!$input || $input.textLength > 0) {
+  const $title = document.querySelector('#pull_request_title');
+  const $description = document.querySelector('#pull_request_body');
+  if (!$title || !$description) {
     return;
   }
 
-  jiraLinks = [];
+  const idSet = new Set()
   document.querySelectorAll('.commit-message').forEach((commitMessage) => {
-    commitMessage.textContent.match(/BSD-\d+/g).forEach((jiraId) => {
-      jiraLinks.push(`[${jiraId}](https://buildout.atlassian.net/browse/${jiraId})`);
-    })
+    match = commitMessage.textContent.match(/BSD-\d+/g);
+    if (match) {
+      match.forEach((id) => idSet.add(id));
+    }
   });
 
-  if (jiraLinks.length > 0) {
-    $input.value = jiraLinks.join("\n") + "\n\n"
+  if (idSet.size > 0) {
+    const ids = [];
+
+    let anyIdsInTitle = false;
+    let description = "";
+
+    idSet.forEach((id) => {
+      ids.push(id);
+      description += `[${id}](https://buildout.atlassian.net/browse/${id})\n`;
+
+      if ($title.value.indexOf(id) > -1) {
+        anyIdsInTitle = true;
+      }
+    });
+
+    if (!anyIdsInTitle) {
+      $title.value = `${ids.join(", ")}: `;
+    }
+
+    if ($description.textLength === 0) {
+      $description.value = `${description}\n`;
+    }
   }
 })();
