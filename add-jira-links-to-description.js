@@ -1,13 +1,17 @@
-(() => {
+chrome.storage.local.get({ tagRegex: "" }, (options) => {
+  if (options.tagRegex === "") {
+    return;
+  }
+
   const $title = document.querySelector('#pull_request_title');
   const $description = document.querySelector('#pull_request_body');
   if (!$title || !$description) {
     return;
   }
 
-  const idSet = new Set()
+  const idSet = new Set();
   document.querySelectorAll('.commit-message').forEach((commitMessage) => {
-    match = commitMessage.textContent.match(/BSD-\d+/g);
+    match = commitMessage.textContent.match(new RegExp(options.tagRegex, 'g'));
     if (match) {
       match.forEach((id) => idSet.add(id));
     }
@@ -36,4 +40,4 @@
       $description.value = `${description}\n`;
     }
   }
-})();
+});

@@ -4,11 +4,14 @@
     return;
   }
 
-  chrome.storage.local.get('inlineLinks', (options) => {
+  chrome.storage.local.get({ inlineLinks: false, subdomain: "", tagRegex: "" }, (options) => {
+    if (options.subdomain == "" || options.tagRegex === "") {
+      return;
+    }
+
     let title = $title.innerHTML.replace(/(<a[^>]+>|⬆︎|<\/a>)/g, '');
-    // TODO: Format settings in options page? (Also, domain option?)
-    title.match(/BSD-\d+/g).forEach((tag) => {
-      const url = `https://buildout.atlassian.net/browse/${tag}`;
+    title.match(new RegExp(options.tagRegex, 'g')).forEach((tag) => {
+      const url = `https://${options.subdomain}.atlassian.net/browse/${tag}`;
       const attrs = `href="${url}" target="_blank"`;
 
       const replacement = options.inlineLinks === false ?
