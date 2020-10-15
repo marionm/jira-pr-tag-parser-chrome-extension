@@ -10,7 +10,7 @@ chrome.storage.local.get({ tagRegex: "" }, (options) => {
   }
 
   const idSet = new Set();
-  document.querySelectorAll('.commit-message').forEach((commitMessage) => {
+  document.querySelectorAll('.TimelineItem .Details').forEach((commitMessage) => {
     match = commitMessage.textContent.match(new RegExp(options.tagRegex, 'g'));
     if (match) {
       match.forEach((id) => idSet.add(id));
