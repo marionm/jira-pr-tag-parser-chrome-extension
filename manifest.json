@@ -1,25 +1,24 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "Jira PR tag parser",
   "description": "Turns Jira tags in PR titles into links",
-  "version": "3.0",
-
-  "browser_action": {
-    "default_icon": "icon.png"
-  },
+  "version": "4.0",
 
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
 
   "options_page": "options.html",
 
   "permissions": [
-   "activeTab",
-   "storage",
-   "https://www.github.com/buildoutinc/*",
-   "https://github.com/buildoutinc/*"
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://www.github.com/buildoutinc/*",
+    "https://github.com/buildoutinc/*"
   ]
 }
