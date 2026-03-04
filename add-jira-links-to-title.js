@@ -1,5 +1,5 @@
 (() => {
-  const $title = document.querySelector('.js-issue-title');
+  const $title = document.querySelector('[data-component="PH_Title"] > span');
   if (!$title) {
     return;
   }
