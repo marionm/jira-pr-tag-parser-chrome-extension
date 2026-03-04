@@ -1,4 +1,4 @@
-chrome.storage.local.get({ tagRegex: "" }, (options) => {
+chrome.storage.local.get({ subdomain: "", tagRegex: "" }, (options) => {
   if (options.tagRegex === "") {
     return;
   }
@@ -25,7 +25,7 @@ chrome.storage.local.get({ tagRegex: "" }, (options) => {
 
     idSet.forEach((id) => {
       ids.push(id);
-      description += `[${id}](https://buildout.atlassian.net/browse/${id})\n`;
+      description += `[${id}](https://${options.subdomain}.atlassian.net/browse/${id})\n`;
 
       if ($title.value.indexOf(id) > -1) {
         anyIdsInTitle = true;
