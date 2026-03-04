@@ -3,8 +3,8 @@ chrome.storage.local.get({ subdomain: "", tagRegex: "" }, (options) => {
     return;
   }
 
-  const $title = document.querySelector('#pull_request_title');
-  const $description = document.querySelector('#pull_request_body');
+  const $title = document.querySelector('[name="pull_request[title]');
+  const $description = document.querySelector('[name="pull_request[body]');
   if (!$title || !$description) {
     return;
   }
