@@ -34,6 +34,7 @@ chrome.storage.local.get({ subdomain: "", tagRegex: "" }, (options) => {
 
     if (!anyIdsInTitle) {
       $title.value = `${ids.join(", ")}: `;
+      $title.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
     if ($description.textLength === 0) {
