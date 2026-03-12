@@ -33,3 +33,15 @@ chrome.storage.local.get('inlineLinks', (options) => {
 inlineLinksInput.addEventListener('change', () => {
   chrome.storage.local.set({ inlineLinks: inlineLinksInput.checked });
 });
+
+const labelsInput = document.querySelector('#labels');
+
+chrome.storage.local.get('labels', (options) => {
+  if (options.labels) {
+    labelsInput.value = options.labels;
+  }
+});
+
+labelsInput.addEventListener('change', () => {
+  chrome.storage.local.set({ labels: labelsInput.value });
+});
