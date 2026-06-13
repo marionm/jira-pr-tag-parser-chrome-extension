@@ -37,7 +37,8 @@ chrome.storage.local.get({ subdomain: "", tagRegex: "" }, (options) => {
       $title.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
-    if ($description.textLength === 0) {
+    // TODO: Move acceptible prefix to options
+    if ($description.textLength === 0 || $description.value.startsWith('# Description of Change')) {
       $description.value = `${description}\n`;
     }
   }
