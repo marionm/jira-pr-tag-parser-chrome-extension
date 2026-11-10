@@ -1,5 +1,5 @@
 (() => {
-  const $title = document.querySelector('[data-component="PH_Title"] > span');
+  const $title = document.querySelector('[data-component="TitleArea"] h1 > .markdown-title, [data-component="PH_Title"] > span');
   if (!$title) {
     return;
   }
